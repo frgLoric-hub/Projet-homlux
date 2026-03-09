@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - HomeLux</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">HomeLux</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                <li><a href="gallery.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                <li><a href="contact.html" class="active" data-fr="Contact" data-en="Contact">Contact</a></li>
+                <li><a href="admin.html" data-fr="Admin" data-en="Admin">Admin</a></li>
+                <li class="lang-switch">
+                    <button id="langToggle" class="lang-btn">
+                        <span class="flag">🇫🇷</span>
+                        <span class="lang-text">FR</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="login-btn" onclick="openLogin()">
+                        <span>👤</span>
+                        <span data-fr="Connexion" data-en="Login">Connexion</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 data-fr="Votre Panier" data-en="Your Cart">Votre Panier</h2>
+            <button onclick="toggleCart()" class="close-cart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p data-fr="Votre panier est vide" data-en="Your cart is empty">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-fr="Total:" data-en="Total:">Total:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" data-fr="Commander" data-en="Checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-fr="Contactez-nous" data-en="Contact us">Contactez-nous</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 1rem;" data-fr="Nous sommes là pour vous aider" data-en="We are here to help you">
+                Nous sommes là pour vous aider
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section style="padding: 3rem 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem;">
+                <!-- Contact Form -->
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-md);">
+                    <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem;" data-fr="Envoyez-nous un message" data-en="Send us a message">Envoyez-nous un message</h2>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);" data-fr="Nom complet" data-en="Full name">Nom complet</label>
+                            <input type="text" required style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: var(--radius); font-size: 1rem;" data-fr-placeholder="Votre nom" data-en-placeholder="Your name" placeholder="Votre nom">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);" data-fr="Email" data-en="Email">Email</label>
+                            <input type="email" required style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: var(--radius); font-size: 1rem;" data-fr-placeholder="votre.email@exemple.com" data-en-placeholder="your.email@example.com" placeholder="votre.email@exemple.com">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);" data-fr="Téléphone" data-en="Phone">Téléphone</label>
+                            <input type="tel" style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: var(--radius); font-size: 1rem;" data-fr-placeholder="06 12 34 56 78" data-en-placeholder="06 12 34 56 78" placeholder="06 12 34 56 78">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);" data-fr="Sujet" data-en="Subject">Sujet</label>
+                            <select required style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: var(--radius); font-size: 1rem; cursor: pointer;">
+                                <option value="" data-fr="Sélectionnez un sujet" data-en="Select a subject">Sélectionnez un sujet</option>
+                                <option value="info" data-fr="Demande d'information" data-en="Information request">Demande d'information</option>
+                                <option value="rendez-vous" data-fr="Prendre rendez-vous" data-en="Make appointment">Prendre rendez-vous</option>
+                                <option value="commande" data-fr="Question sur une commande" data-en="Order question">Question sur une commande</option>
+                                <option value="autre" data-fr="Autre" data-en="Other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);" data-fr="Message" data-en="Message">Message</label>
+                            <textarea rows="6" required style="width: 100%; padding: 0.75rem 1rem; border: 2px solid var(--border); border-radius: var(--radius); font-size: 1rem; font-family: inherit;" data-fr-placeholder="Votre message..." data-en-placeholder="Your message..." placeholder="Votre message..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 2rem;">
+                        <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;" data-fr="Nos coordonnées" data-en="Our contact details">Nos coordonnées</h2>
+                        
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">📍</div>
+                            <div>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;" data-fr="Adresse" data-en="Address">Adresse</h3>
+                                <p style="color: #666;">123 Avenue du Mobilier<br>75001 Paris, France</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">📧</div>
+                            <div>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;" data-fr="Email" data-en="Email">Email</h3>
+                                <p style="color: #666;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6605090812070512260e090b030a131e480014">[email&#160;protected]</a></p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">📱</div>
+                            <div>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;" data-fr="Téléphone" data-en="Phone">Téléphone</h3>
+                                <p style="color: #666;">01 23 45 67 89</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="font-size: 2rem; color: var(--primary);">🕐</div>
+                            <div>
+                                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;" data-fr="Horaires" data-en="Opening hours">Horaires</h3>
+                                <p style="color: #666;" data-fr="Lundi - Samedi : 10h - 19h<br>Dimanche : Fermé" data-en="Monday - Saturday: 10am - 7pm<br>Sunday: Closed">Lundi - Samedi : 10h - 19h<br>Dimanche : Fermé</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-light); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+                        <h3 style="margin-bottom: 0.5rem;" data-fr="Besoin d'aide ?" data-en="Need help?">Besoin d'aide ?</h3>
+                        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;" data-fr="Notre équipe est disponible pour répondre à toutes vos questions" data-en="Our team is available to answer all your questions">Notre équipe est disponible pour répondre à toutes vos questions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section style="padding: 3rem 0; background: var(--bg-light);">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--primary);" data-fr="Venez nous rendre visite" data-en="Come visit us">Venez nous rendre visite</h2>
+            <div style="height: 400px; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
+                <div style="font-size: 5rem; margin-bottom: 1rem;">📍</div>
+                <h3 style="font-size: 1.5rem;">123 Avenue du Mobilier</h3>
+                <p style="font-size: 1.2rem; opacity: 0.9;">75001 Paris, France</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--secondary); color: white; padding: 2rem 0;">
+        <div class="container">
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; margin-bottom: 1rem;">🏠 HomeLux</div>
+                <p style="opacity: 0.8;" data-fr="Votre partenaire mobilier de confiance depuis 2024" data-en="Your trusted furniture partner since 2024">
+                    Votre partenaire mobilier de confiance depuis 2024
+                </p>
+                <div style="margin-top: 1rem;">
+                    <p>&copy; 2024 HomeLux. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>

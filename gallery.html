@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstration - HomeLux</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">HomeLux</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                <li><a href="gallery.html" class="active" data-fr="Démonstration" data-en="Showroom">Démonstration</a></li>
+                <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                <li><a href="admin.html" data-fr="Admin" data-en="Admin">Admin</a></li>
+                <li class="lang-switch">
+                    <button id="langToggle" class="lang-btn">
+                        <span class="flag">🇫🇷</span>
+                        <span class="lang-text">FR</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 data-fr="Votre Panier" data-en="Your Cart">Votre Panier</h2>
+            <button onclick="toggleCart()" class="close-cart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p data-fr="Votre panier est vide" data-en="Your cart is empty">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-fr="Total:" data-en="Total:">Total:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" data-fr="Commander" data-en="Checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-fr="Notre Galerie & Démonstration" data-en="Our Gallery & Showroom">Notre Galerie & Démonstration</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 1rem;" data-fr="Découvrez nos meubles en images et vidéos" data-en="Discover our furniture in images and videos">
+                Découvrez nos meubles en images et vidéos
+            </p>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section style="padding: 3rem 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--primary);" data-fr="🎥 Nos Vidéos" data-en="🎥 Our Videos">🎥 Nos Vidéos</h2>
+            
+            <div class="video-grid">
+
+                <!-- Video 1: Montage -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            width="100%" 
+                            height="315" 
+                            src="video/Construction_Bureau.mp4" 
+                            title="Guide de montage" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: var(--radius);">
+                        </iframe>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;" data-fr="Guide de Montage" data-en="Assembly Guide">Guide de Montage</h3>
+                        <p style="color: #666; font-size: 0.9rem;" data-fr="Apprenez à monter vos meubles facilement" data-en="Learn to assemble your furniture easily">Apprenez à monter vos meubles facilement</p>
+                    </div>
+                </div>
+
+                <!-- Video 3: Conseils déco -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            width="100%" 
+                            height="315" 
+                            src="video/Conseille_Deco.mp4" 
+                            title="Conseils décoration" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="border-radius: var(--radius);">
+                        </iframe>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;" data-fr="Conseils Décoration" data-en="Decoration Tips">Conseils Décoration</h3>
+                        <p style="color: #666; font-size: 0.9rem;" data-fr="Nos experts partagent leurs astuces déco" data-en="Our experts share their decoration tips">Nos experts partagent leurs astuces déco</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section style="padding: 3rem 0; background: var(--bg-light);">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--primary);" data-fr="📸 Galerie Photos" data-en="📸 Photo Gallery">📸 Galerie Photos</h2>
+            
+            <div class="image-grid">
+                <!-- Image 1 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Salon_Moderne.jpg" 
+                        alt="Salon moderne"
+                    >
+                    <div>
+                        <h3 data-fr="Salon Moderne" data-en="Modern Living Room">Salon Moderne</h3>
+                        <p data-fr="Ambiance contemporaine et chaleureuse" data-en="Contemporary and warm atmosphere">Ambiance contemporaine et chaleureuse</p>
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Chambre_Cosy.webp" 
+                        alt="Chambre cosy"
+                    >
+                    <div>
+                        <h3 data-fr="Chambre Cosy" data-en="Cozy Bedroom">Chambre Cosy</h3>
+                        <p data-fr="Un havre de paix pour se reposer" data-en="A haven of peace to rest">Un havre de paix pour se reposer</p>
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Bureau_Design.jpg" 
+                        alt="Bureau design"
+                    >
+                    <div>
+                        <h3 data-fr="Bureau Design" data-en="Design Office">Bureau Design</h3>
+                        <p data-fr="Productivité et élégance réunies" data-en="Productivity and elegance combined">Productivité et élégance réunies</p>
+                    </div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Salle_A_Manger.jpg" 
+                        alt="Salle à manger"
+                    >
+                    <div>
+                        <h3 data-fr="Salle à Manger" data-en="Dining Room">Salle à Manger</h3>
+                        <p data-fr="Moments conviviaux en famille" data-en="Friendly family moments">Moments conviviaux en famille</p>
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Cuisine_Moderne.jpg" 
+                        alt="Cuisine moderne"
+                    >
+                    <div>
+                        <h3 data-fr="Cuisine Moderne" data-en="Modern Kitchen">Cuisine Moderne</h3>
+                        <p data-fr="Fonctionnalité et style" data-en="Functionality and style">Fonctionnalité et style</p>
+                    </div>
+                </div>
+
+                <!-- Image 6 -->
+                <div class="gallery-item">
+                    <img 
+                        src="img/Jardin_Moderne.jpg" 
+                        alt="Jardin"
+                    >
+                    <div>
+                        <h3 data-fr="Mobilier Extérieur" data-en="Outdoor Furniture">Mobilier Extérieur</h3>
+                        <p data-fr="Profitez de votre jardin" data-en="Enjoy your garden">Profitez de votre jardin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section style="padding: 3rem 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--primary);" data-fr="Nos Réalisations" data-en="Our Projects">Nos Réalisations</h2>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img 
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80" 
+                            alt="Réalisation 1"
+                            style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);"
+                        >
+                        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 1.5rem; border-radius: var(--radius);">
+                            <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;" data-fr="Appartement Parisien" data-en="Parisian Apartment">Appartement Parisien</h3>
+                            <p style="color: #666;" data-fr="Rénovation complète d'un 120m² dans le 16e arrondissement" data-en="Complete renovation of 120m² in the 16th arrondissement">Rénovation complète d'un 120m² dans le 16e arrondissement</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img 
+                            src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1200&q=80" 
+                            alt="Réalisation 2"
+                            style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);"
+                        >
+                        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 1.5rem; border-radius: var(--radius);">
+                            <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;" data-fr="Villa Contemporaine" data-en="Contemporary Villa">Villa Contemporaine</h3>
+                            <p style="color: #666;" data-fr="Aménagement d'une villa de 250m² sur la Côte d'Azur" data-en="250m² villa on the French Riviera">Aménagement d'une villa de 250m² sur la Côte d'Azur</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img 
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" 
+                            alt="Réalisation 3"
+                            style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);"
+                        >
+                        <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 1.5rem; border-radius: var(--radius);">
+                            <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;" data-fr="Loft Industriel" data-en="Industrial Loft">Loft Industriel</h3>
+                            <p style="color: #666;" data-fr="Transformation d'un ancien atelier en loft de 180m²" data-en="Transformation of a former workshop into a 180m² loft">Transformation d'un ancien atelier en loft de 180m²</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-prev" onclick="changeSlide(-1)">❮</button>
+                <button class="carousel-next" onclick="changeSlide(1)">❯</button>
+                <div class="carousel-indicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit CTA -->
+    <section style="padding: 4rem 0; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;" data-fr="Visitez notre espace de démonstration" data-en="Visit our physical showroom">Visitez notre espace de démonstration</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 1rem;" data-fr="123 Avenue du Mobilier, 75001 Paris" data-en="123 Furniture Avenue, 75001 Paris">123 Avenue du Mobilier, 75001 Paris</p>
+            <p style="margin-bottom: 2rem;" data-fr="Du lundi au samedi : 10h - 19h" data-en="Monday to Saturday: 10am - 7pm">Du lundi au samedi : 10h - 19h</p>
+            <a href="contact.html" class="btn btn-secondary btn-large" style="background: white; color: var(--primary);" data-fr="📞 Prendre rendez-vous" data-en="📞 Make an appointment">📞 Prendre rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HomeLux</h3>
+                    <p data-fr="Votre spécialiste du mobilier moderne et design depuis 2020" data-en="Your specialist in modern and design furniture since 2020">
+                        Votre spécialiste du mobilier moderne et design depuis 2020
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Navigation" data-en="Navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                        <li><a href="gallery.html" data-fr="Démonstration" data-en="Démonstration">Démonstration</a></li>
+                        <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Service Client" data-en="Customer Service">Service Client</h4>
+                    <ul>
+                        <li><a href="#" data-fr="Livraison" data-en="Delivery">Livraison</a></li>
+                        <li><a href="#" data-fr="Retours" data-en="Returns">Retours</a></li>
+                        <li><a href="#" data-fr="Garantie" data-en="Warranty">Garantie</a></li>
+                        <li><a href="#" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Suivez-nous" data-en="Follow us">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Pinterest">📌</a>
+                        <a href="#" aria-label="YouTube">🎥</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLux. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

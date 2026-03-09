@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - HomeLux</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">HomeLux</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                <li><a href="gallery.html" data-fr="Showroom" data-en="Showroom">Showroom</a></li>
+                <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                <li><a href="admin.html" class="active" data-fr="Admin" data-en="Admin">Admin</a></li>
+                <li class="lang-switch">
+                    <button id="langToggle" class="lang-btn">
+                        <span class="flag">🇫🇷</span>
+                        <span class="lang-text">FR</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 data-fr="Votre Panier" data-en="Your Cart">Votre Panier</h2>
+            <button onclick="toggleCart()" class="close-cart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p data-fr="Votre panier est vide" data-en="Your cart is empty">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-fr="Total:" data-en="Total:">Total:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" data-fr="Commander" data-en="Checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-fr="Tableau de Bord Admin" data-en="Admin Dashboard">Tableau de Bord Admin</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 1rem;" data-fr="Gérez votre boutique" data-en="Manage your store">
+                Gérez votre boutique
+            </p>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section style="padding: 3rem 0;">
+        <div class="container">
+            <!-- Stats Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3 data-fr="Ventes du mois" data-en="Monthly sales">Ventes du mois</h3>
+                        <p class="stat-number">24,890 €</p>
+                        <span class="stat-change positive">+12.5%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3 data-fr="Commandes" data-en="Orders">Commandes</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-change positive">+8.3%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 data-fr="Clients" data-en="Customers">Clients</h3>
+                        <p class="stat-number">1,247</p>
+                        <span class="stat-change positive">+5.1%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🛍️</div>
+                    <div class="stat-info">
+                        <h3 data-fr="Produits" data-en="Products">Produits</h3>
+                        <p class="stat-number">512</p>
+                        <span class="stat-change neutral">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem;">
+                <!-- Store Configuration -->
+                <div class="admin-panel">
+                    <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem;" data-fr="Configuration Boutique" data-en="Store Configuration">Configuration Boutique</h2>
+                    
+                    <form onsubmit="saveStoreConfig(); return false;" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div>
+                            <label class="form-label" data-fr="Nom de la boutique" data-en="Store name">Nom de la boutique</label>
+                            <input type="text" class="form-input" value="HomeLux" placeholder="HomeLux">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Email de contact" data-en="Contact email">Email de contact</label>
+                            <input type="email" class="form-input" value="contact@homelux.fr" placeholder="contact@homelux.fr">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Téléphone" data-en="Phone">Téléphone</label>
+                            <input type="tel" class="form-input" value="01 23 45 67 89" placeholder="01 23 45 67 89">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Adresse" data-en="Address">Adresse</label>
+                            <input type="text" class="form-input" value="123 Avenue du Mobilier, 75001 Paris" placeholder="123 Avenue du Mobilier, 75001 Paris">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Livraison gratuite à partir de" data-en="Free delivery from">Livraison gratuite à partir de</label>
+                            <input type="number" class="form-input" value="500" placeholder="500">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Taux de TVA (%)" data-en="VAT rate (%)">Taux de TVA (%)</label>
+                            <input type="number" class="form-input" value="20" placeholder="20" step="0.1">
+                        </div>
+
+                        <div>
+                            <label class="form-label" data-fr="Description" data-en="Description">Description</label>
+                            <textarea class="form-input" rows="4" placeholder="Votre spécialiste du mobilier...">Votre spécialiste du mobilier moderne et design depuis 2020</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large" data-fr="💾 Sauvegarder" data-en="💾 Save">💾 Sauvegarder</button>
+                    </form>
+                </div>
+
+                <!-- Quick Actions & Logs -->
+                <div>
+                    <!-- Quick Actions -->
+                    <div class="admin-panel" style="margin-bottom: 2rem;">
+                        <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;" data-fr="Actions Rapides" data-en="Quick Actions">Actions Rapides</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <button class="btn btn-secondary btn-large" onclick="showConsoleAnimation('deploy')" data-fr="🚀 Déployer le site" data-en="🚀 Deploy site">🚀 Déployer le site</button>
+                            <button class="btn btn-secondary btn-large" onclick="showConsoleAnimation('update')" data-fr="🔄 Mettre à jour" data-en="🔄 Update">🔄 Mettre à jour</button>
+                            <button class="btn btn-secondary btn-large" onclick="showConsoleAnimation('stop')" data-fr="🛑 Arrêter le serveur" data-en="🛑 Stop server">🛑 Arrêter le serveur</button>
+                        </div>
+                    </div>
+
+                    <!-- Activity Log -->
+                    <div class="admin-panel">
+                        <h2 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;" data-fr="Journal d'Activité" data-en="Activity Log">Journal d'Activité</h2>
+                        
+                        <div class="log-container">
+                            <div class="log-entry log-success">
+                                <span class="log-time">14:23</span>
+                                <span class="log-message" data-fr="Commande #156 créée" data-en="Order #156 created">Commande #156 créée</span>
+                            </div>
+                            <div class="log-entry log-info">
+                                <span class="log-time">13:45</span>
+                                <span class="log-message" data-fr="Nouveau client inscrit" data-en="New customer registered">Nouveau client inscrit</span>
+                            </div>
+                            <div class="log-entry log-success">
+                                <span class="log-time">12:30</span>
+                                <span class="log-message" data-fr="Paiement reçu (899€)" data-en="Payment received (€899)">Paiement reçu (899€)</span>
+                            </div>
+                            <div class="log-entry log-warning">
+                                <span class="log-time">11:15</span>
+                                <span class="log-message" data-fr="Stock faible: Canapé NORDIC" data-en="Low stock: NORDIC Sofa">Stock faible: Canapé NORDIC</span>
+                            </div>
+                            <div class="log-entry log-info">
+                                <span class="log-time">10:00</span>
+                                <span class="log-message" data-fr="Sauvegarde automatique" data-en="Auto backup">Sauvegarde automatique</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Console Animation -->
+    <div id="consoleAnimation" class="console-animation" style="display: none;">
+        <div class="console-window">
+            <div class="console-header">
+                <span data-fr="Terminal HomeLux" data-en="HomeLux Terminal">Terminal HomeLux</span>
+                <button onclick="closeConsole()">✕</button>
+            </div>
+            <div class="console-body" id="consoleOutput">
+                <!-- Console output will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 data-fr="Restez informé(e)" data-en="Stay informed">Restez informé(e)</h2>
+                <p data-fr="Recevez nos offres exclusives et nouveautés" data-en="Receive our exclusive offers and news">Recevez nos offres exclusives et nouveautés</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" data-fr-placeholder="Votre email" data-en-placeholder="Your email" placeholder="Votre email" required>
+                    <button type="submit" class="btn btn-primary" data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HomeLux</h3>
+                    <p data-fr="Votre spécialiste du mobilier moderne et design depuis 2020" data-en="Your specialist in modern and design furniture since 2020">
+                        Votre spécialiste du mobilier moderne et design depuis 2020
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Navigation" data-en="Navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                        <li><a href="gallery.html" data-fr="Showroom" data-en="Showroom">Showroom</a></li>
+                        <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Service Client" data-en="Customer Service">Service Client</h4>
+                    <ul>
+                        <li><a href="#" data-fr="Livraison" data-en="Delivery">Livraison</a></li>
+                        <li><a href="#" data-fr="Retours" data-en="Returns">Retours</a></li>
+                        <li><a href="#" data-fr="Garantie" data-en="Warranty">Garantie</a></li>
+                        <li><a href="#" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Suivez-nous" data-en="Follow us">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Pinterest">📌</a>
+                        <a href="#" aria-label="YouTube">🎥</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLux. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

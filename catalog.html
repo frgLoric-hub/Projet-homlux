@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - HomeLux</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">HomeLux</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="catalog.html" class="active" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                <li><a href="gallery.html" data-fr="Showroom" data-en="Showroom">Showroom</a></li>
+                <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                <li><a href="admin.html" data-fr="Admin" data-en="Admin">Admin</a></li>
+                <li class="lang-switch">
+                    <button id="langToggle" class="lang-btn">
+                        <span class="flag">🇫🇷</span>
+                        <span class="lang-text">FR</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 data-fr="Votre Panier" data-en="Your Cart">Votre Panier</h2>
+            <button onclick="toggleCart()" class="close-cart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p data-fr="Votre panier est vide" data-en="Your cart is empty">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-fr="Total:" data-en="Total:">Total:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" data-fr="Commander" data-en="Checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title" data-fr="Notre Catalogue" data-en="Our Catalog">Notre Catalogue</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 1rem;" data-fr="Découvrez notre sélection de meubles" data-en="Discover our selection of furniture">
+                Découvrez notre sélection de meubles
+            </p>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-wrapper">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <div class="filters-header">
+                        <h3 data-fr="Filtres" data-en="Filters">Filtres</h3>
+                        <button onclick="resetFilters()" class="btn-reset" data-fr="Réinitialiser" data-en="Reset">Réinitialiser</button>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="filter-group">
+                        <h4 data-fr="Catégorie" data-en="Category">Catégorie</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="salon" onchange="applyFilters()">
+                            <span data-fr="Salon" data-en="Living Room">Salon</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="chambre" onchange="applyFilters()">
+                            <span data-fr="Chambre" data-en="Bedroom">Chambre</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="cuisine" onchange="applyFilters()">
+                            <span data-fr="Cuisine" data-en="Kitchen">Cuisine</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="bureau" onchange="applyFilters()">
+                            <span data-fr="Bureau" data-en="Office">Bureau</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="jardin" onchange="applyFilters()">
+                            <span data-fr="Jardin" data-en="Garden">Jardin</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="decoration" onchange="applyFilters()">
+                            <span data-fr="Décoration" data-en="Decoration">Décoration</span>
+                        </label>
+                    </div>
+
+                    <!-- Color Filter -->
+                    <div class="filter-group">
+                        <h4 data-fr="Couleur" data-en="Color">Couleur</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="blanc" onchange="applyFilters()">
+                            <span data-fr="Blanc" data-en="White">Blanc</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="noir" onchange="applyFilters()">
+                            <span data-fr="Noir" data-en="Black">Noir</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="gris" onchange="applyFilters()">
+                            <span data-fr="Gris" data-en="Gray">Gris</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="marron" onchange="applyFilters()">
+                            <span data-fr="Marron" data-en="Brown">Marron</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="bleu" onchange="applyFilters()">
+                            <span data-fr="Bleu" data-en="Blue">Bleu</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="color" value="vert" onchange="applyFilters()">
+                            <span data-fr="Vert" data-en="Green">Vert</span>
+                        </label>
+                    </div>
+
+                    <!-- Style Filter -->
+                    <div class="filter-group">
+                        <h4 data-fr="Style" data-en="Style">Style</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="style" value="moderne" onchange="applyFilters()">
+                            <span data-fr="Moderne" data-en="Modern">Moderne</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="style" value="scandinave" onchange="applyFilters()">
+                            <span data-fr="Scandinave" data-en="Scandinavian">Scandinave</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="style" value="classique" onchange="applyFilters()">
+                            <span data-fr="Classique" data-en="Classic">Classique</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="style" value="industriel" onchange="applyFilters()">
+                            <span data-fr="Industriel" data-en="Industrial">Industriel</span>
+                        </label>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <h4 data-fr="Prix" data-en="Price">Prix</h4>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="0-200" onchange="applyFilters()">
+                            <span data-fr="Moins de 200€" data-en="Less than €200">Moins de 200€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="200-500" onchange="applyFilters()">
+                            <span>200€ - 500€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="500-1000" onchange="applyFilters()">
+                            <span>500€ - 1000€</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="1000+" onchange="applyFilters()">
+                            <span data-fr="Plus de 1000€" data-en="More than €1000">Plus de 1000€</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Products Area -->
+                <div class="catalog-main">
+                    <div class="catalog-header">
+                        <div class="results-info">
+                            <span id="resultsCount">12</span> <span data-fr="produits trouvés" data-en="products found">produits trouvés</span>
+                        </div>
+                        <div class="sort-controls">
+                            <label data-fr="Trier par:" data-en="Sort by:">Trier par:</label>
+                            <select id="sortSelect" onchange="sortProducts()">
+                                <option value="default" data-fr="Par défaut" data-en="Default">Par défaut</option>
+                                <option value="price-asc" data-fr="Prix croissant" data-en="Price: Low to High">Prix croissant</option>
+                                <option value="price-desc" data-fr="Prix décroissant" data-en="Price: High to Low">Prix décroissant</option>
+                                <option value="name" data-fr="Nom A-Z" data-en="Name A-Z">Nom A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="catalogProducts">
+                        <!-- Products will be rendered here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 data-fr="Restez informé(e)" data-en="Stay informed">Restez informé(e)</h2>
+                <p data-fr="Recevez nos offres exclusives et nouveautés" data-en="Receive our exclusive offers and news">Recevez nos offres exclusives et nouveautés</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" data-fr-placeholder="Votre email" data-en-placeholder="Your email" placeholder="Votre email" required>
+                    <button type="submit" class="btn btn-primary" data-fr="S'inscrire" data-en="Subscribe">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HomeLux</h3>
+                    <p data-fr="Votre spécialiste du mobilier moderne et design depuis 2020" data-en="Your specialist in modern and design furniture since 2020">
+                        Votre spécialiste du mobilier moderne et design depuis 2020
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Navigation" data-en="Navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                        <li><a href="gallery.html" data-fr="Showroom" data-en="Showroom">Showroom</a></li>
+                        <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Service Client" data-en="Customer Service">Service Client</h4>
+                    <ul>
+                        <li><a href="#" data-fr="Livraison" data-en="Delivery">Livraison</a></li>
+                        <li><a href="#" data-fr="Retours" data-en="Returns">Retours</a></li>
+                        <li><a href="#" data-fr="Garantie" data-en="Warranty">Garantie</a></li>
+                        <li><a href="#" data-fr="FAQ" data-en="FAQ">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Suivez-nous" data-en="Follow us">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Pinterest">📌</a>
+                        <a href="#" aria-label="YouTube">🎥</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLux. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

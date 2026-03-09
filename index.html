@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeLux - Mobilier & Décoration de Luxe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLogin()">&times;</span>
+            <h2 data-fr="Connexion" data-en="Login">Connexion</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label data-fr="Email" data-en="Email">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label data-fr="Mot de passe" data-en="Password">Mot de passe</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" data-fr="Se connecter" data-en="Login">Se connecter</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; color: #666;">
+                <span data-fr="Pas encore de compte ?" data-en="No account yet?">Pas encore de compte ?</span> 
+                <a href="#" style="color: var(--primary); font-weight: 600;" data-fr="S'inscrire" data-en="Sign up">S'inscrire</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏠</span>
+                <span class="logo-text">HomeLux</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                <li><a href="gallery.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                <li><a href="admin.html" data-fr="Admin" data-en="Admin">Admin</a></li>
+                <li class="lang-switch">
+                    <button id="langToggle" class="lang-btn">
+                        <span class="flag">🇫🇷</span>
+                        <span class="lang-text">FR</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="login-btn" onclick="openLogin()">
+                        <span>👤</span>
+                        <span data-fr="Connexion" data-en="Login">Connexion</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2 data-fr="Votre Panier" data-en="Your Cart">Votre Panier</h2>
+            <button onclick="toggleCart()" class="close-cart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p data-fr="Votre panier est vide" data-en="Your cart is empty">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-fr="Total:" data-en="Total:">Total:</span>
+                <span id="cartTotal">0,00 €</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" data-fr="Commander" data-en="Checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Hero Section with Parallax -->
+    <section class="hero-parallax">
+        <div class="parallax-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in" data-fr="Créez votre intérieur de rêve" data-en="Create your dream interior">
+                Créez votre intérieur de rêve
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay" data-fr="Découvrez notre collection exclusive de meubles de luxe" data-en="Discover our exclusive collection of luxury furniture">
+                Découvrez notre collection exclusive de meubles de luxe
+            </p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="catalog.html" class="btn btn-primary btn-large" data-fr="Découvrir le catalogue" data-en="Discover catalog">Découvrir le catalogue</a>
+                <a href="gallery.html" class="btn btn-secondary btn-large" data-fr="📸 Voir la galerie" data-en="📸 View gallery">📸 Voir la galerie</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Image Carousel Section -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="section-title" data-fr="🎠 Nos Espaces de Démonstration" data-en="Nos Demonstration">Nos Espaces de Démonstration</h2>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <img src="img/horizontal-tour-eiffel-paris.jpg" alt="Showroom 1">
+                        <div class="carousel-caption">
+                            <h3 data-fr="Démonstration Paris" data-en="Paris Demonstration">Démonstration Paris</h3>
+                            <p data-fr="125 Avenue des Champs-Élysées" data-en="125 Champs-Élysées Avenue">125 Avenue des Champs-Élysées</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <img src="img/horizontal-lyon.jpg" alt="Showroom 2">
+                        <div class="carousel-caption">
+                            <h3 data-fr="Démonstration Lyon" data-en="Lyon Demonstration">Démonstration Lyon</h3>
+                            <p data-fr="45 Rue de la République" data-en="45 République Street">45 Rue de la République</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <img src="img/horizontal-monaco.jpg" alt="Showroom 3">
+                        <div class="carousel-caption">
+                            <h3 data-fr="Démonstration Monaco" data-en="Monaco Demonstration">Démonstration Monaco</h3>
+                            <p data-fr="Port Hercule, Monte-Carlo" data-en="Port Hercule, Monte-Carlo">Port Hercule, Monte-Carlo</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <img src="img/horizontal-nice.jpg" alt="Showroom 4">
+                        <div class="carousel-caption">
+                            <h3 data-fr="Showroom Nice" data-en="Nice Showroom">Démonstration Nice</h3>
+                            <p data-fr="Promenade des Anglais" data-en="Promenade des Anglais">Promenade des Anglais</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-prev" onclick="changeSlide(-1)">❮</button>
+                <button class="carousel-next" onclick="changeSlide(1)">❯</button>
+                <div class="carousel-indicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section with Parallax Cards -->
+    <section class="categories-parallax-section">
+        <div class="container">
+            <h2 class="section-title" data-fr="Nos Collections" data-en="Our Collections">Nos Collections</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">🛋️</div>
+                    <h3 data-fr="Salon de Luxe" data-en="Luxury Living Room">Salon de Luxe</h3>
+                    <p data-fr="Canapés, fauteuils et tables basses haut de gamme" data-en="High-end sofas, armchairs and coffee tables">Canapés, fauteuils et tables basses haut de gamme</p>
+                    <a href="catalog.html?cat=salon" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">🛏️</div>
+                    <h3 data-fr="Chambre Royale" data-en="Royal Bedroom">Chambre Royale</h3>
+                    <p data-fr="Lits, armoires et commodes d'exception" data-en="Exceptional beds, wardrobes and dressers">Lits, armoires et commodes d'exception</p>
+                    <a href="catalog.html?cat=chambre" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">🍽️</div>
+                    <h3 data-fr="Salle à Manger" data-en="Dining Room">Salle à Manger</h3>
+                    <p data-fr="Tables et chaises design pour vos réceptions" data-en="Designer tables and chairs for your receptions">Tables et chaises design pour vos réceptions</p>
+                    <a href="catalog.html?cat=cuisine" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">💼</div>
+                    <h3 data-fr="Bureau Prestige" data-en="Prestige Office">Bureau Prestige</h3>
+                    <p data-fr="Mobilier de bureau élégant et fonctionnel" data-en="Elegant and functional office furniture">Mobilier de bureau élégant et fonctionnel</p>
+                    <a href="catalog.html?cat=bureau" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">🌳</div>
+                    <h3 data-fr="Jardin & Terrasse" data-en="Garden & Terrace">Jardin & Terrasse</h3>
+                    <p data-fr="Mobilier extérieur haut de gamme" data-en="High-end outdoor furniture">Mobilier extérieur haut de gamme</p>
+                    <a href="catalog.html?cat=jardin" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+
+                <div class="category-card-parallax" data-tilt>
+                    <div class="category-icon">✨</div>
+                    <h3 data-fr="Décoration Exclusive" data-en="Exclusive Decoration">Décoration Exclusive</h3>
+                    <p data-fr="Accessoires et luminaires de créateurs" data-en="Designer accessories and lighting">Accessoires et luminaires de créateurs</p>
+                    <a href="catalog.html?cat=decoration" class="btn btn-primary" data-fr="Découvrir" data-en="Discover">Découvrir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title" data-fr="⭐ Produits Vedettes" data-en="⭐ Featured Products">⭐ Produits Vedettes</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge" data-fr="Nouveau" data-en="New">Nouveau</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80" alt="Canapé De Studio">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-fr="Canapé De Studio" data-en="STUDIO Sofa">Canapé De Studio</h3>
+                        <p class="product-desc" data-fr="Canapé 3 places en velours premium" data-en="3-seater sofa in premium velvet">Canapé 3 places en velours premium</p>
+                        <div class="product-footer">
+                            <span class="product-price">2,799 €</span>
+                            <button class="btn-add-cart" onclick="addToCart(1, 'Canapé NORDIC', 2799)" data-fr="Ajouter" data-en="Add">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge promo">-25%</div>
+                    <div class="product-image">
+                        <img src="img/微信图片_20201203144038.png" alt="Lit Royale">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-fr="Lit ROYAL" data-en="ROYAL Bed">Lit ROYAL</h3>
+                        <p class="product-desc" data-fr="Lit king size avec tête de lit capitonnée" data-en="King size bed with tufted headboard">Lit king size avec tête de lit capitonnée</p>
+                        <div class="product-footer">
+                            <span class="product-price">
+                                <span class="old-price">3,999 €</span>
+                                2,999 €
+                            </span>
+                            <button class="btn-add-cart" onclick="addToCart(2, 'Lit ROYAL', 2999)" data-fr="Ajouter" data-en="Add">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="img/table-de-repas-influence-ceramique-argile-acier-laque-gris-taupe-dt082ar-1-0.jpg" alt="Table PRESTIGE">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-fr="Table PRESTIGE" data-en="PRESTIGE Table">Table PRESTIGE</h3>
+                        <p class="product-desc" data-fr="Table à manger en bois massif et marbre" data-en="Solid wood and marble dining table">Table à manger en bois massif et marbre</p>
+                        <div class="product-footer">
+                            <span class="product-price">3,499 €</span>
+                            <button class="btn-add-cart" onclick="addToCart(3, 'Table PRESTIGE', 3499)" data-fr="Ajouter" data-en="Add">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-badge" data-fr="Tendance" data-en="Trending">Tendance</div>
+                    <div class="product-image">
+                        <img src="img/Cuisine Vintage Américaine.jpg" alt="Cuisine Vintage Américaine">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-fr="Cuisine Vintage Américaine" data-en="EXECUTIVE Desk">Cuisine Vintage Américaine</h3>
+                        <p class="product-desc" data-fr="Plan de travail en marbre fini" data-en="American vintage Kitchen">Cuisine en marbre ancien</p>
+                        <div class="product-footer">
+                            <span class="product-price">1,899 €</span>
+                            <button class="btn-add-cart" onclick="addToCart(4, 'Cuisine Vintage Américaine', 1899)" data-fr="Ajouter" data-en="Add">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="catalog.html" class="btn btn-primary btn-large" data-fr="Voir tout le catalogue →" data-en="View full catalog →">Voir tout le catalogue →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">🚚</div>
+                    <h3 data-fr="Livraison Premium" data-en="Premium Delivery">Livraison Premium</h3>
+                    <p data-fr="Gratuite partout en France" data-en="Free throughout France">Gratuite partout en France</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔧</div>
+                    <h3 data-fr="Installation Professionnelle" data-en="Professional Installation">Installation Professionnelle</h3>
+                    <p data-fr="Par nos experts" data-en="By our experts">Par nos experts</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🛡️</div>
+                    <h3 data-fr="Garantie 10 ans" data-en="10-year Warranty">Garantie 10 ans</h3>
+                    <p data-fr="Sur tous nos produits" data-en="On all our products">Sur tous nos produits</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💎</div>
+                    <h3 data-fr="Qualité Exceptionnelle" data-en="Exceptional Quality">Qualité Exceptionnelle</h3>
+                    <p data-fr="Matériaux nobles" data-en="Noble materials">Matériaux nobles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 data-fr="📧 Restez Informé(e)" data-en="📧 Stay Informed">📧 Restez Informé(e)</h2>
+                <p data-fr="Recevez nos offres exclusives et nouveautés en avant-première" data-en="Receive our exclusive offers and news first">Recevez nos offres exclusives et nouveautés en avant-première</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" data-fr-placeholder="Votre email" data-en-placeholder="Your email" placeholder="Votre email" required>
+                    <button type="submit" class="btn btn-primary" data-fr="S'abonner" data-en="Subscribe">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🏠 HomeLux</h3>
+                    <p data-fr="Votre spécialiste du mobilier de luxe depuis 2020. Excellence, élégance et qualité exceptionnelle." data-en="Your luxury furniture specialist since 2020. Excellence, elegance and exceptional quality.">
+                        Votre spécialiste du mobilier de luxe depuis 2020. Excellence, élégance et qualité exceptionnelle.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Navigation" data-en="Navigation">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a></li>
+                        <li><a href="catalog.html" data-fr="Catalogue" data-en="Catalog">Catalogue</a></li>
+                        <li><a href="gallery.html" data-fr="Galerie" data-en="Gallery">Galerie</a></li>
+                        <li><a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Service Client VIP" data-en="VIP Customer Service">Service Client VIP</h4>
+                    <ul>
+                        <li><a href="#" data-fr="Livraison Premium" data-en="Premium Delivery">Livraison Premium</a></li>
+                        <li><a href="#" data-fr="Installation" data-en="Installation">Installation</a></li>
+                        <li><a href="#" data-fr="Garantie 10 ans" data-en="10-year Warranty">Garantie 10 ans</a></li>
+                        <li><a href="#" data-fr="Personnalisation" data-en="Customization">Personnalisation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-fr="Suivez-nous" data-en="Follow us">Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Pinterest">📌</a>
+                        <a href="#" aria-label="YouTube">🎥</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLux. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
